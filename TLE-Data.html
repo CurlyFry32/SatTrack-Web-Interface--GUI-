@@ -44,12 +44,62 @@
             </li>
         </ul>
         <div class="content">
-            <p>On this page is a database to add and update the stored TLEs</p>
+            <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <!-- Content for the first div -->
+              <!-- Add/Edit Form -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 id="form-title">Add New TLE</h5>
+        <form id="tleForm">
+          <div class="mb-3">
+            <label for="tleName" class="form-label">Satellite Name</label>
+            <input type="text" class="form-control" id="tleName" required>
+          </div>
+          <div class="mb-3">
+            <label for="tleData" class="form-label">TLE Data (Full 2-Line Format)</label>
+            <textarea class="form-control" id="tleData" rows="4" required placeholder="Paste both lines here"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="tleDescription" class="form-label">Description (optional)</label>
+            <textarea class="form-control" id="tleDescription" rows="2"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="saveBtn">Save TLE</button>
+          <button type="button" class="btn btn-secondary d-none" id="cancelEditBtn">Cancel Edit</button>
+        </form>
+      </div>
+    </div>
+        </div>
+        <div class="col-md-6">
+             <!-- Stored TLEs -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5>Saved TLE Data</h5>
+        <table class="table table-striped" id="tleTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>TLE</th>
+              <th>Last Updated</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tleTableBody">
+            <tr><td colspan="4" class="text-center text-muted">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+        </div>
+      </div>
+    </div>
         </div>
         <!--Bootstrap Script-->
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"></script>
+        <script src="js/TLE-Data-Manager.js"></script>
     </body>
 </html>
