@@ -4,8 +4,9 @@ body {
     font-size: 14px;
     line-height: 20px;
     color: #333;
-    background-color: #fff
+    background-color: #fff;
 }
+
 h1,h2,h3,h4,h5,h6 {
     margin: 10px 0;
     font-family: inherit;
@@ -19,6 +20,16 @@ h1 {
 }
 p {
     margin: 0 0 10px
+}
+.nav{
+    background-color: #fff;
+    padding: .5em;
+}
+.content {
+    margin: 1em;
+}
+.footer {
+    background-color: #fff
 }
 .navbar-icon {
     height: 32px;
