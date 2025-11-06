@@ -20,9 +20,9 @@
             <a class="navbar-brand" href="index.html"
                 ><img class="navbar-icon-home" src="img/SatTrackLogo.png" /> SatTrack</a
             >
-            <ul class="nav  justify-content-end">
+            <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="#">Orbit Map</a>
+                    <a class="nav-link" aria-current="page" href="index.html">Orbit Map</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/TLE-Data.html">TLE Data</a>
@@ -59,7 +59,7 @@
             </ul>
         </nav>
         <div class="content">
-            <p>A full settings page</p>
+            <p>Note: Any greyed out options will be implemented in future versions</p>
             <h2 id="Visual">Visual</h2>
             <div class="form-check form-switch">
                 <input class="form-check-input dropdown-item" type="checkbox" role="switch" id="flexSwitchDarkModes" />
@@ -95,13 +95,11 @@
                     style="max-width: 400px; display: none" />
             </div>
             <h3>Firmware</h3>
-
-            <div class="disabled">• Firmware Update frequency <b>N/A</b></div>
-            
-
-            <div class="disabled">• View Logs — Display system and tracking logs.<b>N/A</b></div>
-            <div class="disabled">• Export Logs — Download logs for debugging.<b>N/A</b></div>
-            <div class="disabled">• Sensor Calibration — Gyro, compass, or encoder calibration tools.<b>N/A</b></div>
+            <div class="disabled setting-group">Firmware Update frequency <b>N/A</b></div>
+            <div class="setting-group"><button id="checkFirmwareBtn" class="btn btn-sm btn-primary" onclick="checkFirmwareUpdate()">Check for Firmware Update</button></div>
+            <div class="setting-group"><button id="viewLogBtn" class="btn btn-sm btn-primary" onclick="viewLogs()">View Logs</button></div>
+            <div class="setting-group"><button id="exportLogBtn" class="btn btn-sm btn-primary" onclick="exportLogs()">Export Logs</button></div>
+            <div class="disabled setting-group">Sensor Calibration — Gyro, compass, or encoder calibration tools <b>N/A</b></div>
             <!-- Factory Reset -->
             <div class="setting-group mt-3">
                 <button id="factoryResetBtn" class="btn btn-danger btn-sm">Factory Reset</button>
