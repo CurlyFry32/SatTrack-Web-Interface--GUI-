@@ -1,3 +1,4 @@
+/* ===== Base Light Mode (Default) ===== */
 body {
     margin: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -6,47 +7,54 @@ body {
     color: #333;
     background-color: #fff;
 }
-html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
 h1,h2,h3,h4,h5,h6 {
     margin: 10px 0;
     font-family: inherit;
     font-weight: bold;
-    line-height: 20px;
     color: inherit;
     text-rendering: optimizelegibility;
 }
-h1 {
-    font-size: 2.5em;
-}
+
 p {
     margin: 0 0 10px;
 }
+
 .nav {
     background-color: #fff;
     padding: 0.5em;
 }
-.navbar{
-        background-color: #fff;
+
+.navbar {
+    background-color: #fff;
     padding: 0.5em;
 }
+
 .content {
     margin: 1em;
 }
+
 .footer {
     background-color: #fff;
 }
+
 .navbar-icon {
     height: 32px;
 }
+
 .navbar-icon-home {
     height: 48px;
     margin: 0.5em;
+    content: url(/img/SatTrackLogo.png);
 }
+
 .container-fluid {
     height: 100%;
     display: flex;
@@ -54,26 +62,33 @@ p {
     gap: 8px;
     padding: 10px;
 }
-.disabled{
+
+.disabled {
     color: darkgray;
 }
+
+.setting-group {
+    margin-bottom: 1em;
+}
+
 #map {
     flex: 1 1 auto;
     min-height: 80%;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
-  /* Container around map */
-  #mapContainer {
+
+/* Container around map */
+#mapContainer {
     position: relative;
-    width: 90vw;              /* limit width */
-    max-width: 1200px;        /* keeps it centered nicely on big screens */
-    height: 85vh;             /* taller map area */
-    margin: 20px auto;        /* center horizontally */
+    width: 90vw;
+    max-width: 1200px;
+    height: 85vh;
+    margin: 20px auto;
     border-radius: 16px;
     box-shadow: 0 3px 14px rgba(0, 0, 0, 0.25);
-    overflow: hidden;         /* ensure map doesn't draw outside corners */
-  }
+    overflow: hidden;
+}
 
 #time-controls {
     background-color: rgba(255, 255, 255, 0.95);
@@ -84,6 +99,99 @@ p {
     justify-content: space-between;
     gap: 12px;
 }
+
 #timeLabel {
     font-weight: bold;
+}
+
+/* ====== DARK MODE ====== */
+/* Bootstrap-aware dark theme using data-bs-theme="dark" or body.dark-mode */
+
+body.dark-mode,
+[data-bs-theme="dark"] body {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .navbar,
+[data-bs-theme="dark"] .navbar {
+    background-color: #1e1e1e !important;
+}
+
+body.dark-mode .nav,
+[data-bs-theme="dark"] .nav {
+    background-color: #1e1e1e !important;
+}
+
+body.dark-mode .footer,
+[data-bs-theme="dark"] .footer {
+    background-color: #1e1e1e !important;
+}
+
+body.dark-mode .navbar-icon {
+    size: 48px;
+    content: url(/img/SettingsIconWhite.png);
+}
+body.dark-mode .navbar-icon-home {
+    size: 48px;
+    content: url(/img/SatTrackLogoWhite.png);
+}
+body.dark-mode .content,
+[data-bs-theme="dark"] .content {
+    background-color: #181818;
+    color: #e0e0e0;
+}
+
+body.dark-mode a.nav-link,
+[data-bs-theme="dark"] a.nav-link {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .dropdown-menu,
+[data-bs-theme="dark"] .dropdown-menu {
+    background-color: #2a2a2a !important;
+    color: #e0e0e0;
+    border-color: #333;
+}
+
+body.dark-mode .dropdown-item,
+[data-bs-theme="dark"] .dropdown-item {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .dropdown-item:hover,
+[data-bs-theme="dark"] .dropdown-item:hover {
+    background-color: #333333 !important;
+}
+
+body.dark-mode .form-check-label,
+[data-bs-theme="dark"] .form-check-label {
+    color: #e0e0e0;
+}
+
+body.dark-mode .disabled,
+[data-bs-theme="dark"] .disabled {
+    color: #777;
+}
+
+body.dark-mode #mapContainer,
+[data-bs-theme="dark"] #mapContainer {
+    background-color: #1a1a1a;
+    box-shadow: 0 3px 14px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode #time-controls,
+[data-bs-theme="dark"] #time-controls {
+    background-color: rgba(40, 40, 40, 0.9);
+    color: #f0f0f0;
+}
+
+body.dark-mode #timeLabel,
+[data-bs-theme="dark"] #timeLabel {
+    color: #f0f0f0;
+}
+
+body.dark-mode hr,
+[data-bs-theme="dark"] hr {
+    border-top: 1px solid #333;
 }

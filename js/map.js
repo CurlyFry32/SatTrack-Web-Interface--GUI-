@@ -2,7 +2,7 @@
 const map = L.map("map", {
   worldCopyJump: false,
   zoomSnap: 0.5,
-  minZoom: 2,
+  minZoom: 1,
   maxZoom: 6
 }).setView([0, 0], 2);
 
