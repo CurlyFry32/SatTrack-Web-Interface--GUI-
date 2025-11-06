@@ -27,8 +27,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/TLE-Data.html">TLE Data</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Control</a>
+                <li class="nav-item ">
+                    <a class="nav-link active" href="#">Control</a>
                 </li>
                 <li class="nav-item dropdown dropdown-menu-end">
                     <a
@@ -81,13 +81,13 @@
 
       <!-- Position Sliders -->
       <div class="mt-5">
-        <label for="azSlider" class="form-label fw-bold">Azimuth</label>
+        <label for="azSlider" class="form-label fw-bold">Azimuth (North is 0°)</label>
         <input type="range" id="azSlider" min="0" max="360" step="1" value="0" class="form-range" />
         <span id="azValue">0°</span>
       </div>
 
       <div class="mt-3">
-        <label for="elSlider" class="form-label fw-bold">Elevation</label>
+        <label for="elSlider" class="form-label fw-bold">Elevation (Horizon is 0°)</label>
         <input type="range" id="elSlider" min="0" max="90" step="1" value="0" class="form-range" />
         <span id="elValue">0°</span>
       </div>
