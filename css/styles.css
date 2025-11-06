@@ -1,11 +1,16 @@
 body {
     margin: 0;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 20px;
     color: #333;
     background-color: #fff;
 }
+html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
 
 h1,h2,h3,h4,h5,h6 {
     margin: 10px 0;
@@ -13,24 +18,61 @@ h1,h2,h3,h4,h5,h6 {
     font-weight: bold;
     line-height: 20px;
     color: inherit;
-    text-rendering: optimizelegibility
+    text-rendering: optimizelegibility;
 }
 h1 {
-    font-size: 2.5em
+    font-size: 2.5em;
 }
 p {
-    margin: 0 0 10px
+    margin: 0 0 10px;
 }
-.nav{
+.nav {
     background-color: #fff;
-    padding: .5em;
+    padding: 0.5em;
 }
 .content {
     margin: 1em;
 }
 .footer {
-    background-color: #fff
+    background-color: #fff;
 }
 .navbar-icon {
     height: 32px;
+}
+.container-fluid {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+}
+#map {
+    flex: 1 1 auto;
+    min-height: 80%;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+  /* Container around map */
+  #mapContainer {
+    position: relative;
+    width: 90vw;              /* limit width */
+    max-width: 1200px;        /* keeps it centered nicely on big screens */
+    height: 85vh;             /* taller map area */
+    margin: 20px auto;        /* center horizontally */
+    border-radius: 16px;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.25);
+    overflow: hidden;         /* ensure map doesn't draw outside corners */
+  }
+
+#time-controls {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+#timeLabel {
+    font-weight: bold;
 }
