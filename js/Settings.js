@@ -144,12 +144,17 @@ async function exportLogs() {
 }  
 // ====== Firmware Update Checker ======
 const GITHUB_FIRMWARE_URL =
-  "https://raw.githubusercontent.com/<your-user>/<your-repo>/main/firmware.json";
+  "https://raw.githubusercontent.com/CurlyFry32/SatTrack-Web-Interface--Firmware-/refs/heads/main/firmware.json";
 const ESP_API_BASE = "http://192.168.4.1/api";
+const FIRMWARE_CHECK_KEY = "lastFirmwareCheck";
 
-async function checkFirmwareUpdate() {
+document.addEventListener("DOMContentLoaded", () => {
+  autoCheckFirmwareIfDue();
+});
+
+async function checkFirmwareUpdate(silent = false) {
   const checkBtn = document.getElementById("checkFirmwareBtn");
-  if (checkBtn) checkBtn.disabled = true;
+  if (checkBtn && !silent) checkBtn.disabled = true;
 
   try {
     // 1️⃣ Get local ESP version
@@ -158,28 +163,32 @@ async function checkFirmwareUpdate() {
     const local = await localRes.json();
 
     // 2️⃣ Get GitHub latest info
-    const remoteRes = await fetch(GITHUB_FIRMWARE_URL + `?t=${Date.now()}`); // avoid caching
+    const remoteRes = await fetch(GITHUB_FIRMWARE_URL + `?t=${Date.now()}`);
     if (!remoteRes.ok) throw new Error(`GitHub responded ${remoteRes.status}`);
     const remote = await remoteRes.json();
 
-    console.log("Local:", local.version, "Remote:", remote.version);
-
     // 3️⃣ Compare versions
     if (compareVersions(remote.version, local.version) > 0) {
-      // New version available
-      const confirmed = confirm(
-        `🛰️ New firmware ${remote.version} is available!\n\nChanges:\n${remote.notes}\n\nDo you want to update now?`
-      );
-      if (confirmed) {
-        await triggerFirmwareUpdate(remote.url);
+      const message = `🛰️ New firmware ${remote.version} is available!\n\nChanges:\n${remote.notes}\n\nDo you want to update now?`;
+
+      if (silent) {
+        // auto-check case: prompt subtly
+        if (confirm(message)) await triggerFirmwareUpdate(remote.url);
+      } else {
+        // manual button case
+        const confirmed = confirm(message);
+        if (confirmed) await triggerFirmwareUpdate(remote.url);
       }
-    } else {
+    } else if (!silent) {
       alert(`✅ Device is up to date (v${local.version})`);
     }
+
+    localStorage.setItem(FIRMWARE_CHECK_KEY, new Date().toISOString());
   } catch (err) {
-    alert("Firmware check failed: " + err.message);
+    if (!silent) alert("Firmware check failed: " + err.message);
+    console.error("Firmware check failed:", err);
   } finally {
-    if (checkBtn) checkBtn.disabled = false;
+    if (checkBtn && !silent) checkBtn.disabled = false;
   }
 }
 
@@ -204,3 +213,41 @@ async function triggerFirmwareUpdate(firmwareUrl) {
     alert("Failed to start OTA update: " + err.message);
   }
 }
+
+// ====== Auto Check Logic ======
+
+function getUpdateFrequencyDays() {
+  // Read from user setting dropdown (fallback to Weekly)
+  const select = document.getElementById("firmwareFrequency");
+  const value = select ? select.value : "weekly";
+
+  switch (value.toLowerCase()) {
+    case "daily": return 1;
+    case "weekly": return 7;
+    case "monthly": return 30;
+    default: return 7;
+  }
+}
+
+function autoCheckFirmwareIfDue() {
+  const lastCheck = localStorage.getItem(FIRMWARE_CHECK_KEY);
+  const daysBetween = getUpdateFrequencyDays();
+
+  if (!lastCheck) {
+    console.log("No prior firmware check — running initial check.");
+    checkFirmwareUpdate(true);
+    return;
+  }
+
+  const lastDate = new Date(lastCheck);
+  const now = new Date();
+  const diffDays = (now - lastDate) / (1000 * 60 * 60 * 24);
+
+  if (diffDays >= daysBetween) {
+    console.log(`Firmware check due (${diffDays.toFixed(1)} days since last).`);
+    checkFirmwareUpdate(true);
+  } else {
+    console.log(`Firmware check not due yet (${diffDays.toFixed(1)} days elapsed).`);
+  }
+}
+

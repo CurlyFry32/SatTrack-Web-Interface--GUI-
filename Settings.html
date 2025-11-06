@@ -95,11 +95,31 @@
                     style="max-width: 400px; display: none" />
             </div>
             <h3>Firmware</h3>
-            <div class="disabled setting-group">Firmware Update frequency <b>N/A</b></div>
-            <div class="setting-group"><button id="checkFirmwareBtn" class="btn btn-sm btn-primary" onclick="checkFirmwareUpdate()">Check for Firmware Update</button></div>
-            <div class="setting-group"><button id="viewLogBtn" class="btn btn-sm btn-primary" onclick="viewLogs()">View Logs</button></div>
-            <div class="setting-group"><button id="exportLogBtn" class="btn btn-sm btn-primary" onclick="exportLogs()">Export Logs</button></div>
-            <div class="disabled setting-group">Sensor Calibration — Gyro, compass, or encoder calibration tools <b>N/A</b></div>
+            <div class="setting-group">
+                <label for="firmwareFrequency" class="form-label">Firmware Update Frequency:</label>
+                <select
+                    id="firmwareFrequency"
+                    class="form-select form-select-sm"
+                    onchange="localStorage.setItem('firmwareFrequency', this.value)">
+                    <option value="daily">Daily</option>
+                    <option value="weekly" selected>Weekly</option>
+                    <option value="monthly">Monthly</option>
+                </select>
+            </div>
+            <div class="setting-group">
+                <button id="checkFirmwareBtn" class="btn btn-sm btn-primary" onclick="checkFirmwareUpdate()">
+                    Check for Firmware Update
+                </button>
+            </div>
+            <div class="setting-group">
+                <button id="viewLogBtn" class="btn btn-sm btn-primary" onclick="viewLogs()">View Logs</button>
+            </div>
+            <div class="setting-group">
+                <button id="exportLogBtn" class="btn btn-sm btn-primary" onclick="exportLogs()">Export Logs</button>
+            </div>
+            <div class="disabled setting-group">
+                Sensor Calibration — Gyro, compass, or encoder calibration tools <b>N/A</b>
+            </div>
             <!-- Factory Reset -->
             <div class="setting-group mt-3">
                 <button id="factoryResetBtn" class="btn btn-danger btn-sm">Factory Reset</button>
@@ -111,5 +131,12 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"></script>
         <script src="js/Settings.js"></script>
+        <script>
+            // Load saved preference on page load
+            const savedFreq = localStorage.getItem("firmwareFrequency");
+            if (savedFreq) {
+                document.getElementById("firmwareFrequency").value = savedFreq;
+            }
+        </script>
     </body>
 </html>
