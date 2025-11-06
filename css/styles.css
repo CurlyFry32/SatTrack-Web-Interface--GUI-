@@ -30,6 +30,10 @@ p {
     background-color: #fff;
     padding: 0.5em;
 }
+.navbar{
+        background-color: #fff;
+    padding: 0.5em;
+}
 .content {
     margin: 1em;
 }
@@ -39,12 +43,19 @@ p {
 .navbar-icon {
     height: 32px;
 }
+.navbar-icon-home {
+    height: 48px;
+    margin: 0.5em;
+}
 .container-fluid {
     height: 100%;
     display: flex;
     flex-direction: column;
     gap: 8px;
     padding: 10px;
+}
+.disabled{
+    color: darkgray;
 }
 #map {
     flex: 1 1 auto;

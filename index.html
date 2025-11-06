@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>SatTrack Interface</title>
+        <link rel="icon" type="image/x-icon" href="img/SatTrackLogoCircle64x64.png">
         <link rel="stylesheet" href="css/styles.css" />
         <!--Bootstrap CSS-->
         <link
@@ -15,59 +16,96 @@
         <script src="js/script.js"></script>
     </head>
     <body>
-        <!--Nav Bar-->
-        <ul class="nav nav-underline justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Orbit Map</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/TLE-Data.html">TLE Data</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Control.html">Control</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a
-                    class="nav-link dropdown-toggle"
-                    data-bs-toggle="dropdown"
-                    href="#"
-                    role="button"
-                    aria-expanded="false"
-                    ><img src="img/Settings%20Icon.png" class="navbar-icon"
-                /></a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <div class="form-check form-switch">
-                            <input
-                                class="form-check-input dropdown-item"
-                                type="checkbox"
-                                role="switch"
-                                id="flexSwitchDarkMode" />
-                            <label class="form-check-label" for="flexSwitchDarkMode">Dark Mode</label>
-                        </div>
-                    </li>
-                    <li><a class="dropdown-item" href="/Settings.html#Visual">Visual</a></li>
-                    <li><a class="dropdown-item" href="/Settings.html#Software">Software</a></li>
-                    <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="/Settings.html">Settings Page</a></li>
-                </ul>
-            </li>
-        </ul>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="index.html"
+                ><img class="navbar-icon-home" src="img/SatTrackLogo.png" /> SatTrack</a>
+            <ul class="nav nav-underline justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Orbit Map</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/TLE-Data.html">TLE Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Control.html">Control</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        role="button"
+                        aria-expanded="false"
+                        ><img src="img/Settings%20Icon.png" class="navbar-icon"
+                    /></a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <div class="form-check form-switch">
+                                <input
+                                    class="form-check-input dropdown-item"
+                                    type="checkbox"
+                                    role="switch"
+                                    id="flexSwitchDarkMode" />
+                                <label class="form-check-label" for="flexSwitchDarkMode">Dark Mode</label>
+                            </div>
+                        </li>
+                        <li><a class="dropdown-item" href="/Settings.html#Visual">Visual</a></li>
+                        <li><a class="dropdown-item" href="/Settings.html#Software">Software</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="/Settings.html">Settings Page</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>        
         <div class="content">
             <div class="container-fluid p-3">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h3>Satellite Orbit Viewer</h3>
-                    <a href="index.html" class="btn btn-outline-primary btn-sm">Manage TLEs</a>
+                    
+                    <a href="TLE-Data.html" class="btn btn-outline-primary btn-sm">Manage TLEs</a>
                 </div>
 
                 <!-- Clock and controls -->
                 <div id="mapContainer">
                     <div id="map"></div>
-                    <div id="timeControls">
-                        <div><strong>Time:</strong> <span id="timeLabel">Loading...</span></div>
-                        <label for="timeOffset" class="form-label small">Offset (hours)</label>
-                        <input type="range" id="timeOffset" min="-24" max="24" step="1" value="0" />
-                        <span id="offsetLabel">0h</span>
+                    <div id="timeControls" class="p-2">
+                        <div class="d-flex flex-column align-items-center">
+                            <div id="timeLabel" class="mt-2 small">Time: Loading...</div>
+                            <p></p>
+                            <div
+                                class="btn-group flex-wrap justify-content-center"
+                                role="group"
+                                aria-label="Time Controls">
+                                <button class="btn btn-outline-secondary btn-sm time-btn" data-offset="-43200">
+                                    -12h
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm time-btn" data-offset="-21600">
+                                    -6h
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm time-btn" data-offset="-3600">
+                                    -1h
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm time-btn" data-offset="-600">
+                                    -10m
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm time-btn" data-offset="-60">-1m</button>
+                                <button class="btn btn-outline-primary btn-sm time-btn active" data-offset="0">
+                                    Now
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm time-btn" data-offset="60">+1m</button>
+                                <button class="btn btn-outline-secondary btn-sm time-btn" data-offset="600">
+                                    +10m
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm time-btn" data-offset="3600">
+                                    +1h
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm time-btn" data-offset="21600">
+                                    +6h
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm time-btn" data-offset="43200">
+                                    +12h
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

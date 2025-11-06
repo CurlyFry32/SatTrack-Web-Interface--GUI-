@@ -50,21 +50,32 @@ function addSatellite(tle) {
 }
 
 // === Time Control and Display ===
+// === Time Control and Display (Seconds-based) ===
 const timeLabel = document.getElementById("timeLabel");
-const timeOffset = document.getElementById("timeOffset");
+const timeButtons = document.querySelectorAll(".time-btn");
 
-let offsetHours = 0;
-
-timeOffset.addEventListener("input", (e) => {
-  offsetHours = parseFloat(e.target.value);
-  updateClock();
-  updateSatellites();
-});
+let offsetSeconds = 0;
 
 function updateClock() {
-  const displayed = new Date(Date.now() + offsetHours * 3600000);
+  const displayed = new Date(Date.now() + offsetSeconds * 1000);
   timeLabel.textContent = "Time: " + displayed.toUTCString();
 }
+
+timeButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    offsetSeconds = parseInt(btn.dataset.offset);
+    updateClock();
+    updateSatellites();
+
+    // highlight active button
+    timeButtons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+  });
+});
+
+// initialize time display
+updateClock();
+
 
 // === Satellite Propagation ===
 function normalizeLon(lon) {
@@ -72,7 +83,7 @@ function normalizeLon(lon) {
 }
 
 function updateSatellites() {
-  const now = new Date(Date.now() + offsetHours * 3600000);
+  const now = new Date(Date.now() + offsetSeconds * 10000);
   Object.values(satObjects).forEach(({ marker, satrec, trail }) => {
     const pv = satellite.propagate(satrec, now);
     if (!pv.position) return;
@@ -82,14 +93,13 @@ function updateSatellites() {
     const lon = normalizeLon(satellite.degreesLong(gd.longitude));
 
     if (!isNaN(lat) && !isNaN(lon)) marker.setLatLng([lat, lon]);
-
-    // Build orbit trail for 2 hours ahead
-    // --- generate future orbit trail for the next 2 hours (smooth + dateline fix) ---
-    // --- generate future orbit trail for the next 2 hours (ultra smooth + dateline fix) ---
+    
 const rawPoints = [];
-const stepMinutes = 0.5; // compute every 30 seconds for finer detail
-    for (let i = 0; i <= 120; i += stepMinutes) {
-      const t = new Date(now.getTime() + i * 60000);
+const stepSeconds = 60; // one-minute propagation steps
+
+ // compute every 30 seconds for finer detail
+for (let i = 0; i <= 7200; i += stepSeconds){  // 2 hours forward
+      const t = new Date(now.getTime() + i * 1000);
       const pred = satellite.propagate(satrec, t);
       if (!pred.position) continue;
       const gmstF = satellite.gstime(t);
@@ -104,7 +114,7 @@ const stepMinutes = 0.5; // compute every 30 seconds for finer detail
     let segment = [];
     let prevLon = null;
     for (const [la, lo] of rawPoints) {
-      if (prevLon !== null && Math.abs(lo - prevLon) > 180) {
+      if (prevLon !== null && Math.abs(lo - prevLon) > 180) {//If jump of more than 180 degrees remove segment
         segments.push(segment);
         segment = [];
       }
@@ -145,6 +155,13 @@ const stepMinutes = 0.5; // compute every 30 seconds for finer detail
     trail.setLatLngs(smoothedSegments);
   });
 }
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") offsetSeconds -= 60;  // -1 minute
+  if (e.key === "ArrowRight") offsetSeconds += 60; // +1 minute
+  updateClock();
+  updateSatellites();
+});
 
 // Live time update every second
 setInterval(() => {

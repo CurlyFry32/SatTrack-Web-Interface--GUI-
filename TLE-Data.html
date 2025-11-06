@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>TLE Data</title>
+        <link rel="icon" type="image/x-icon" href="img/SatTrackLogoCircle64x64.png">
         <link rel="stylesheet" href="css/styles.css" />
         <!--Bootstrap CSS-->
         <link
@@ -15,34 +16,47 @@
     </head>
     <body>
         <!--Nav Bar-->
-        <ul class="nav nav-underline justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link" href="/index.html">GPS Map</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">TLE Data</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Control.html">Control</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a
-                    class="nav-link dropdown-toggle"
-                    data-bs-toggle="dropdown"
-                    href="#"
-                    role="button"
-                    aria-expanded="false"
-                    ><img src="img/Settings%20Icon.png" class="navbar-icon"
-                /></a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Dark Mode</a></li>
-                    <li><a class="dropdown-item" href="/Settings.html#Visual">Visual</a></li>
-                    <li><a class="dropdown-item" href="/Settings.html#Software">Software</a></li>
-                    <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="/Settings.html">Settings Page</a></li>
-                </ul>
-            </li>
-        </ul>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="index.html"
+                ><img class="navbar-icon-home" src="img/SatTrackLogo.png" /> SatTrack</a>
+            <ul class="nav nav-underline justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Orbit Map</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/TLE-Data.html">TLE Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Control.html">Control</a>
+                </li>
+                <li class="nav-item dropdown dropdown-menu-end">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        role="button"
+                        aria-expanded="false"
+                        ><img src="img/Settings%20Icon.png" class="navbar-icon"
+                    /></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="form-check form-switch">
+                                <input
+                                    class="form-check-input dropdown-item"
+                                    type="checkbox"
+                                    role="switch"
+                                    id="flexSwitchDarkMode" />
+                                <label class="form-check-label" for="flexSwitchDarkMode">Dark Mode</label>
+                            </div>
+                        </li>
+                        <li><a class="dropdown-item" href="/Settings.html#Visual">Visual</a></li>
+                        <li><a class="dropdown-item" href="/Settings.html#Software">Software</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="/Settings.html">Settings Page</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
         <div class="content">
             <div class="container">
                 <div class="row">
@@ -81,9 +95,9 @@
                                 </form>
                             </div>
                         </div>
+                        <p></p> <!-- surely this bodge wont break right? -->
                     </div>
                     <div class="col-lg-6">
-                        <p></p> <!-- surely this bodge wont break right? -->
                         <!-- Stored TLEs -->
                         <div class="card shadow-sm">
                             <div class="card-body">

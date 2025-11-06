@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>TLE Data</title>
+        <title>Settings</title>
+        <link rel="icon" type="image/x-icon" href="img/SatTrackLogoCircle64x64.png" />
         <link rel="stylesheet" href="css/styles.css" />
         <!--Bootstrap CSS-->
         <link
@@ -15,43 +16,63 @@
     </head>
     <body>
         <!--Nav Bar-->
-        <ul class="nav nav-underline justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link" href="/index.html">GPS Map</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/TLE-Data.html">TLE Data</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Control.html">Control</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a
-                    class="nav-link dropdown-toggle active"
-                    aria-current="page"
-                    data-bs-toggle="dropdown"
-                    href="#"
-                    role="button"
-                    aria-expanded="false"
-                    ><img src="img/Settings%20Icon.png" class="navbar-icon"
-                /></a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Dark Mode</a></li>
-                    <li><a class="dropdown-item" href="#Visual">Visual</a></li>
-                    <li><a class="dropdown-item" href="#Software">Software</a></li>
-                    <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="#">Settings Page</a></li>
-                </ul>
-            </li>
-        </ul>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="index.html"
+                ><img class="navbar-icon-home" src="img/SatTrackLogo.png" /> SatTrack</a>
+            <ul class="nav nav-underline justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Orbit Map</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/TLE-Data.html">TLE Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Control.html">Control</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        role="button"
+                        aria-expanded="false"
+                        ><img src="img/Settings%20Icon.png" class="navbar-icon"
+                    /></a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <div class="form-check form-switch">
+                                <input
+                                    class="form-check-input dropdown-item"
+                                    type="checkbox"
+                                    role="switch"
+                                    id="flexSwitchDarkMode" />
+                                <label class="form-check-label" for="flexSwitchDarkMode">Dark Mode</label>
+                            </div>
+                        </li>
+                        <li><a class="dropdown-item" href="/Settings.html#Visual">Visual</a></li>
+                        <li><a class="dropdown-item" href="/Settings.html#Software">Software</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="/Settings.html">Settings Page</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
         <div class="content">
             <p>A full settings page</p>
             <h2 id="Visual">Visual</h2>
             <div class="form-check form-switch">
-                <input class="form-check-input dropdown-item" type="checkbox" role="switch" id="flexSwitchDarkMode" />
+                <input class="form-check-input dropdown-item" type="checkbox" role="switch" id="flexSwitchDarkModes" />
                 <label class="form-check-label" for="flexSwitchDarkMode">Dark Mode</label>
             </div>
             <h2 id="Software">Software</h2>
+            <div class="disabled">• Firmware Update frequency <b>N/A</b></div>
+            <div>• Time and date selection (Automatically gather elsewhere)</div>
+            <div>• TLE Update frequency, when and how often (Default 12am UTC, daily)</div>
+            <div>• TLE Update site, where to gather information</div>
+            <div>• Factory Reset — Restore default configuration.</div>
+            <div class="disabled">• View Logs — Display system and tracking logs.<b>N/A</b></div>
+            <div class="disabled">• Export Logs — Download logs for debugging.<b>N/A</b></div>
+            <div class="disabled">• Sensor Calibration — Gyro, compass, or encoder calibration tools.<b>N/A</b></div>
         </div>
         <!--Bootstrap Script-->
         <script
